@@ -1,12 +1,30 @@
-# This file contains the factorial function                                   |
-# It get an integer value in $a0 and return a double value in $f30
+# This code is a constituent part of work 2 of the Computer Organization Discipline [ELC1011]
+# https://github.com/Jvbrates/TIC_TAC_TOE-MarsMips/
+# This program is free software under GNU GPL V3 or later version
+# see http://www.gnu.org/licences
+#
+# Autor: João Vitor Belmonte Rates(Jvbrates) - UFSM - CT
+# e-mail: jvrates%inf.ufsm.br
 
+# 1/4
+# Prólogo:
+# Este arquivo contém a função recursiva fatorial, que recebe como argumento:
+# $a0, um inteiro(tipo word) e retorna o seu valor fatorial em $f30 (tipo double)
+# $double f30 <= ( int $a0)!
+
+#*******************************************************************************
+#        1         2         3         4         5         6         7         8
+#2345678901234567890123456789012345678901234567890123456789012345678901234567890
 
 .text
 
+# No trecho de código mais externo a função certifica-se de que $sp está
+# alinhado para capacitar o armazanamento de um regitrador de precisão dupla,
+# isto é, $sp%8==0, caso necessário ela subtrai -4 de $sp (-4 pois este é o 
+# valor que $sp estará movido devido ao armazenamento de words). Após alinhar a
+# memória, a função rec_fat é chamada, está que realmente calcula o valor 
+# fatorial. Por fim antes de retornar, A função restaura o valor de $sp
 
-li $a0, 5
-# double fatorial( int fat);
 .globl fatorial
 fatorial:
 

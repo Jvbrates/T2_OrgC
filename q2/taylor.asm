@@ -1,5 +1,5 @@
 # This code is a constituent part of work 2 of the Computer Organization Discipline [ELC1011]
-# https://github.com/Jvbrates/TIC_TAC_TOE-MarsMips/
+# https://github.com/Jvbrates/T2_OrgC
 # This program is free software under GNU GPL V3 or later version
 # see http://www.gnu.org/licences
 #

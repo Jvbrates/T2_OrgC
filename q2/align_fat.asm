@@ -1,5 +1,5 @@
 # This code is a constituent part of work 2 of the Computer Organization Discipline [ELC1011]
-# https://github.com/Jvbrates/TIC_TAC_TOE-MarsMips/
+# https://github.com/Jvbrates/T2_OrgC
 # This program is free software under GNU GPL V3 or later version
 # see http://www.gnu.org/licences
 #
@@ -8,6 +8,7 @@
 
 # 1/4
 # Prólogo:
+# [Leia o ReadmeQ2.md]
 # Este arquivo contém a função recursiva fatorial, que recebe como argumento:
 # $a0, um inteiro(tipo word) e retorna o seu valor fatorial em $f30 (tipo double)
 # $double f30 <= ( int $a0)!

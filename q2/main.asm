@@ -6,58 +6,45 @@
 # Autor: João Vitor Belmonte Rates(Jvbrates) - UFSM - CT
 # e-mail: jvrates%inf.ufsm.br
 
-# 0/4
+# 4/4
 # Prólogo:
 # [Leia o ReadmeQ2.md]
-# Este arquivo contém a função recursiva pow, que recebe dois argumentos,
-# $f0 <= Um numero tipo double;
-# $a0 <= um Expoente inteiro(tipo word) maior que 0;
-# E então retorna em $f30 <= $f0^$a0
+#
+# Este arquivo contem a função main, que carrega o valor 57.23 graus
+# no registrador $f0 double e então converte o valor para radianos,
+# após isso calcula o valor do cosseno usando a série de taylor, e
+# por fim exibe na tela o resultado
 
 #*******************************************************************************
 #        1         2         3         4         5         6         7         8
 #2345678901234567890123456789012345678901234567890123456789012345678901234567890
 
+
+.data
+.align 3
+valor_calculado: .double 57.23
+resultado: .asciiz "Resultado: "
+
+
 .text
 
-.globl pow
-pow:
-addiu $sp, $sp, -8
-sw $a0, ($sp)
-sw $ra, 4($sp)
 
-jal pow_rec
+.globl main
+main:
 
-lw $a0, ($sp)
-lw $ra, 4($sp)
+l.d $f0, valor_calculado
 
-addiu $sp, $sp, 8
-jr $ra
+jal graustorad
 
-#-----------------------------------------------------------------------------|
+mov.d $f0, $f30
 
-pow_rec:
+jal cosseno_taylor
 
-bne $a0, 1, recursao
+mov.d $f12, $f30
+la $a0, resultado
+li $v0, 58
+syscall
 
-mov.d $f30, $f0
-
-jr $ra
-
-recursao:
-
-addi $sp, $sp, -4
-sw $ra, ($sp)
-
-addi $a0, $a0, -1
-
-
-jal pow
-
-mul.d $f30, $f30, $f0
-
-lw $ra, ($sp)
-addi $sp, $sp, 4
-
-jr $ra
+li $v0, 10
+syscall
 

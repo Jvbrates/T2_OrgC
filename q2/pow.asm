@@ -21,6 +21,21 @@
 
 .globl pow
 pow:
+addiu $sp, $sp, -8
+sw $a0, ($sp)
+sw $ra, 4($sp)
+
+jal pow_rec
+
+lw $a0, ($sp)
+lw $ra, 4($sp)
+
+addiu $sp, $sp, 8
+jr $ra
+
+#-----------------------------------------------------------------------------|
+
+pow_rec:
 
 bne $a0, 1, recursao
 

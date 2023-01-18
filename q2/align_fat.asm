@@ -30,26 +30,14 @@ fatorial:
 
 addi $sp, $sp, -8
 sw $ra, ($sp)
-sw $s0, 4($sp)
+sw $a0, 4($sp)
 
-
-divu $s0, $sp, 8
-mfhi $s0
-beqz $s0, no_need_align
-
-# Alinhando a memoria a 8 bytes necessários para lidar com double
-addi $sp, $sp, -4
 
 no_need_align:
 jal rec_fat
 
-beqz $s0, no_need_realign
-
-addi $sp, $sp, 4
-
-no_need_realign:
 lw $ra, ($sp)
-lw $s0, 4($sp)
+lw $a0, 4($sp)
 addiu $sp, $sp, 8
 
 jr $ra
@@ -68,6 +56,8 @@ mtc1 $zero, $f31
 cvt.d.w $f30, $f30
 
 jr $ra
+
+#--------------------------------------|
 
 recursao:
 #Armazena $f28 na stack, e $ra

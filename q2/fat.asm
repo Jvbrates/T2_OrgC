@@ -4,12 +4,12 @@
 
 .text
 
-addi $sp, $sp, -4
- 
+#addi $sp, $sp, -4
+li $a0, 5
 # double fatorial( int fat);
 
-.globl align_fatorial
-align_fatorial:
+.globl fa_torial
+fa_torial:
 
 
 bgt  $a0, 1, recursao

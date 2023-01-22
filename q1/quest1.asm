@@ -52,6 +52,7 @@ Nl: .asciiz "\n"
 	.end_macro
 
 .data
+mask_MSB: .word 0x80000000
 mask_1: .word 01
 mask_0: .word -2
 
@@ -126,6 +127,18 @@ bne $s0, 32, loop
 
 # Restoh >> 1
 srl $s1, $s1, 1
+
+and $s4, $s4, 1
+li $t0, 1
+
+bne $t0, $s4 no_need
+
+lw $t0, mask_MSB
+or $s1, $s1, $t0
+
+no_need:
+
+
 
 #resto = RestoL
 #Quociente = RestoH

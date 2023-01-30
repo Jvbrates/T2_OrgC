@@ -8,11 +8,7 @@ $W(x)=\sum_{k=1}^\infty\frac{(-k)^{k-1}}{k!}x^k$
 
 As funções matemáticas que manipulam dados double esperam que a memória esteja previamente alinhada para o intervalo de 8 bytes, portanto cabe a função **main**, ****alinhar os dados a memória entes de iniciar os cálculos. ****
 
-As funções **globais** neste código seguem as convenções padrões com algumas informações adicionais:
-
-- [$f0,$f31] são os registradores usados para retorno dos resultados;
-- [$f12,$f1] são os registradores usados como parâmetros
-- [$f28] deve ser restaurado antes de retornar.
+As funções **globais** neste código seguem as convenções padrões;
 
 Funções **contidas** dentro de funções globais (internas, recursivas) não necessitam manter registradores, tipo $s e $a, no retorno. Visto que está responsabilidade fica atrelada as suas respectivas funções globais (caller).
 

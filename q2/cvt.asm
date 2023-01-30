@@ -12,8 +12,8 @@
 # Este arquivo contém a duas funções:
 # graustorad, converte um valor dado em graus para radianos.
 # radtograus, convertte um valor dado em radianos para graus.
-# Ambas funções recebem como entrada double em $f0 e
-# retornam o resultado em doubble $f30
+# Ambas funções recebem como entrada double em $f12 e
+# retornam o resultado em doubble $f0
 
 # É importante perceber que devido a constante PI ser um valor
 # irracional, as conversões serão aproximadas e como consequencia
@@ -42,11 +42,11 @@ radtograus:
 
 l.d $f28, Divisor
 
-mul.d $f30, $f0, $f28
+mul.d $f0, $f12, $f28
 
 l.d $f28, PI
 
-div.d $f30, $f30, $f28
+div.d $f0, $f0, $f28
 
 
 jr $ra
@@ -58,11 +58,11 @@ graustorad:
 
 l.d $f28, PI
 
-mul.d $f30, $f0, $f28
+mul.d $f0, $f12, $f28
 
 l.d  $f28, Divisor
 
-div.d $f30, $f30, $f28
+div.d $f0, $f0, $f28
 
 
 jr $ra

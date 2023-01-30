@@ -10,13 +10,13 @@ As funções matemáticas que manipulam dados double esperam que a memória este
 
 As funções **globais** neste código seguem as convenções padrões com algumas informações adicionais:
 
-- [$f30,$f31] são os registradores usados para retorno dos resultados;
-- [$f0,$f1] são os registradores usados como parâmetros
+- [$f0,$f31] são os registradores usados para retorno dos resultados;
+- [$f12,$f1] são os registradores usados como parâmetros
 - [$f28] deve ser restaurado antes de retornar.
 
 Funções **contidas** dentro de funções globais (internas, recursivas) não necessitam manter registradores, tipo $s e $a, no retorno. Visto que está responsabilidade fica atrelada as suas respectivas funções globais (caller).
 
-Isto é útil a funções recursivas que necessitam de um contador e ou necessitam alterar o parâmetro $f0 para cada recursão. (Ex.: $x! = x*(x-1)!$ )
+Isto é útil a funções recursivas que necessitam de um contador e ou necessitam alterar o parâmetro $f12 para cada recursão. (Ex.: $x! = x*(x-1)!$ )
 
 “caller”:  Que chama outro procedimento;
 

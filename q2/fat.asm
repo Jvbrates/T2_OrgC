@@ -1,5 +1,5 @@
 # This file contains the factorial function                                   |
-# It get an integer value in $a0 and return a double value in $f30
+# It get an integer value in $a0 and return a double value in $f0
 
 
 .text
@@ -16,9 +16,9 @@ bgt  $a0, 1, recursao
 # 1! = 1, 0! = 1
 fat0:
 li $t0, 1
-mtc1 $t0, $f30
+mtc1 $t0, $f0
 mtc1 $zero, $f31
-cvt.d.w $f30, $f30
+cvt.d.w $f0, $f0
 
 jr $ra
 
@@ -38,11 +38,11 @@ mtc1 $a0, $f28
 cvt.d.w $f28, $f28
 
 #Calcula o fatorial anterior
-addi $a0, $a0, -1  # $f30 = (x-1)!
+addi $a0, $a0, -1  # $f0 = (x-1)!
 jal fatorial
 
 # Calcula o fatorial x! = x.(x-1)!
-mul.d $f30, $f30, $f28
+mul.d $f0, $f0, $f28
 
 #restaura $f28
 l.d $f28, ($sp)

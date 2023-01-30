@@ -11,7 +11,7 @@
 # [Leia o ReadmeQ2.md]
 #
 # Este arquivo contem a função main, que carrega o valor 57.23 graus
-# no registrador $f0 double e então converte o valor para radianos,
+# no registrador $f12 double e então converte o valor para radianos,
 # após isso calcula o valor do cosseno usando a série de taylor, e
 # por fim exibe na tela o resultado
 
@@ -32,15 +32,15 @@ resultado: .asciiz "Resultado: "
 .globl main
 main:
 
-l.d $f0, valor_calculado
+l.d $f12, valor_calculado
 
 jal graustorad
 
-mov.d $f0, $f30
+mov.d $f12, $f0
 
 jal cosseno_taylor
 
-mov.d $f12, $f30
+mov.d $f12, $f0
 la $a0, resultado
 li $v0, 58
 syscall

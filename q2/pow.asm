@@ -10,9 +10,9 @@
 # Prólogo:
 # [Leia o ReadmeQ2.md]
 # Este arquivo contém a função recursiva pow, que recebe dois argumentos,
-# $f0 <= Um numero tipo double;
+# $f12 <= Um numero tipo double;
 # $a0 <= um Expoente inteiro(tipo word) maior que 0;
-# E então retorna em $f30 <= $f0^$a0
+# E então retorna em $f0 <= $f12^$a0
 
 #*******************************************************************************
 #        1         2         3         4         5         6         7         8
@@ -40,7 +40,7 @@ pow_rec:
 
 bne $a0, 1, recursao
 
-mov.d $f30, $f0
+mov.d $f0, $f12
 
 jr $ra
 
@@ -54,7 +54,7 @@ addi $a0, $a0, -1
 
 jal pow
 
-mul.d $f30, $f30, $f0
+mul.d $f0, $f0, $f12
 
 lw $ra, ($sp)
 addi $sp, $sp, 4

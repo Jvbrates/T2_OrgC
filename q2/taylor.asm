@@ -11,9 +11,9 @@
 # [Leia o ReadmeQ2.md]
 #
 # Este arquivo contém a função recursiva cosseno_taylor, com 7 iterações:
-# Está função recebe como parâmetro um valor $f0 (double), que representa o
+# Está função recebe como parâmetro um valor $f12 (double), que representa o
 # angulo ao qual será calculado o cosseno, expresso em radianos.
-# Retorna em $f30 (double) o cosseno do angulo
+# Retorna em $f0 (double) o cosseno do angulo
 
 # A função é dividia em duas partes, a principal que define o contador de 
 # recursão para 2, calculando então o somatario da função de 2 à 7, e soma com o
@@ -53,13 +53,13 @@ li $s0, 1
 
 jal rec_taylor
 
-mov.d $f0,$f30 
+mov.d $f12,$f0 
 
-l.d $f30, menuzum
-div.d $f30, $f30,$f30 # $f30 <= 1
+l.d $f0, menuzum
+div.d $f0, $f0,$f0 # $f0 <= 1
 
-# $f30 = 1 + ["Recursão taylor, para n de 2 à 7"]
-add.d $f30, $f30, $f0
+# $f0 = 1 + ["Recursão taylor, para n de 2 à 7"]
+add.d $f0, $f0, $f12
 
 # restaura os registradores
 lw $ra, 4($sp)
@@ -75,40 +75,40 @@ rec_taylor:
 
 # Aloca memória
 # [16 - 24] : $ra | (não usado)
-# [08 - 16] : $f0 | $f1
+# [08 - 16] : $f12 | $f1
 # [00 - 08] : $f28 | $f29
 addi $sp, $sp, -24
 
 # Armazena os registradores
 sw $ra, 16($sp)
 s.d $f28, ($sp)
-s.d $f0, 8($sp)
+s.d $f12, 8($sp)
 
 
 
-# $f30 <= (-1)^$s0
+# $f0 <= (-1)^$s0
 move $a0, $s0
-l.d $f0, menuzum
+l.d $f12, menuzum
 jal pow
 
-# $f28 <= $f30
-mov.d $f28, $f30
+# $f28 <= $f0
+mov.d $f28, $f0
 
-# $f30 <= (2*$s0)!
+# $f0 <= (2*$s0)!
 add $a0, $a0, $a0 # $a0*=2
 jal fatorial
 
-# $f28 <= $f28/$f30 == (-1)^n / (2n)!
-div.d $f28, $f28, $f30
+# $f28 <= $f28/$f0 == (-1)^n / (2n)!
+div.d $f28, $f28, $f0
 
-# $f0 = x || restaura $f0
-l.d $f0, 8($sp)
+# $f12 = x || restaura $f12
+l.d $f12, 8($sp)
 
-# $f30 <= == (x)^2n
+# $f0 <= == (x)^2n
 jal pow
 
-# $f30 <= $f30*$f28
-mul.d $f30, $f30, $f28
+# $f0 <= $f0*$f28
+mul.d $f0, $f0, $f28
 
 
 blt $s0, 7, rec
@@ -131,12 +131,12 @@ rec:
 addi $s0, $s0, 1
 
 # Salva o resultado da iteração atual em $f28
-mov.d $f28, $f30
+mov.d $f28, $f0
 
-# $f30 <= Calcula a próxima iteração
+# $f0 <= Calcula a próxima iteração
 jal rec_taylor
 
 # Soma a próxima iteração com a atual
-add.d $f30, $f30, $f28
+add.d $f0, $f0, $f28
 
 j exit
